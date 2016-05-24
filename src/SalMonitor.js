@@ -31,11 +31,16 @@
                 if ( regex.test( text ) ) {
                     key = '-s-a-log-' + text.substring( 0, 20 );
                     if ( mw.cookie.get( key ) !== '1' ) {
-                        mw.notify( text, {
-                        	autoHide: false,
-                        	title: 'Server Admin Log',
-                        	type: 'info'
-                        } );
+                        mw.notify(
+                        	$( '<a></a>' )
+                        		.attr( 'href', 'https://wikitech.wikimedia.org/wiki/Server_Admin_Log' )
+                        		.text( text ),
+                        	{
+	                        	autoHide: false,
+	                        	title: 'Server Admin Log',
+	                        	type: 'info'
+	                        }
+                        );
                         mw.cookie.set(
                             key,
                             '1',
