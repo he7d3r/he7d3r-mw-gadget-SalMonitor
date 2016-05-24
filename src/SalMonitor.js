@@ -1,5 +1,5 @@
 /**
- * Generates a table showing the scores for each revision returned from Quary
+ * Notify users on Watchlist about interesting entries on Server Admin Log
  *
  * @author: Helder (https://github.com/he7d3r)
  * @license: CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0/>
