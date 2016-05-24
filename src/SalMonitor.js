@@ -22,12 +22,20 @@
             dataType: 'jsonp'
         } ).done( function ( data ) {
             var text = data.query.pages[ 0 ].revisions[ 0 ].content,
+                regex = mw.config.get(
+        		'server-admin-log-regex',
+        		new RegExp( mw.RegExp.escape( mw.config.get( 'wgDBname') ) )
+		),
                 key;
             $.each( text.split( '\n' ), function ( n, text ) {
-                if ( mw.config.get( 'server-admin-log-regex' ).test( text ) ) {
+                if ( regex.test( text ) ) {
                     key = '-s-a-log-' + text.substring( 0, 20 );
                     if ( mw.cookie.get( key ) !== '1' ) {
-                        mw.notify( text );
+                        mw.notify( text, {
+                        	autoHide: false,
+                        	title: 'Server Admin Log',
+                        	type: 'info'
+                        } );
                         mw.cookie.set(
                             key,
                             '1',
@@ -43,7 +51,8 @@
     }
 
     if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Watchlist' ) {
-        mw.loader.using( [ 'mediawiki.cookie', 'mediawiki.notify' ] ).done( salMonitor );
+        mw.loader.using( [ 'mediawiki.cookie', 'mediawiki.notify', 'mediawiki.RegExp' ] )
+        .done( salMonitor );
     }
 
 }( mediaWiki, jQuery ) );
