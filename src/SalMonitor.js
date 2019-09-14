@@ -25,7 +25,7 @@
 				key,
 				regex = mw.config.get(
 					'server-admin-log-regex',
-					new RegExp( mw.RegExp.escape( mw.config.get( 'wgDBname') ) )
+					new RegExp( mw.util.escapeRegExp( mw.config.get( 'wgDBname') ) )
 				);
 			if ( !data || data.error ) {
 				return;
@@ -60,7 +60,7 @@
 	}
 
 	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Watchlist' ) {
-		mw.loader.using( [ 'mediawiki.cookie', 'mediawiki.notify', 'mediawiki.RegExp' ] )
+		mw.loader.using( [ 'mediawiki.cookie', 'mediawiki.notify', 'mediawiki.util' ] )
 		.done( salMonitor );
 	}
 
