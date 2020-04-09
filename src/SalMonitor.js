@@ -60,7 +60,7 @@
 	}
 
 	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Watchlist' ) {
-		mw.loader.using( [ 'mediawiki.cookie', 'mediawiki.notify', 'mediawiki.util' ] )
+		mw.loader.using( [ 'mediawiki.cookie', 'mediawiki.util' ] )
 		.done( salMonitor );
 	}
 
